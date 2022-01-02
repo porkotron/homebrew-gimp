@@ -6,11 +6,10 @@ class Libgimp20AT21018 < Formula
 
   bottle do
     root_url "https://github.com/ryan-robeson/homebrew-gimp/releases/download/v1.2"
-    cellar :any
-    sha256 "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c" => :catalina
-    sha256 "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c" => :mojave
-    sha256 "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c" => :high_sierra
-    sha256 "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c" => :sierra
+    sha256 cellar: :any, catalina:    "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c"
+    sha256 cellar: :any, mojave:      "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c"
+    sha256 cellar: :any, high_sierra: "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c"
+    sha256 cellar: :any, sierra:      "198acf2dbc825deab43c7969d66eb0ed6c59a479a4adbed9eb941db938c7243c"
   end
 
   depends_on "autoconf" => :build
@@ -53,11 +52,11 @@ class Libgimp20AT21018 < Formula
     # autogen.sh calls configure
     system "./autogen.sh", "--prefix=#{prefix}",
                            *args
-    #system "./configure", "--prefix=#{prefix}",
+    # system "./configure", "--prefix=#{prefix}",
     #                      *args
 
     system "make"
-    #interactive_shell
+    # interactive_shell
 
     # Install files based on Debian's packages (libgimp2.0 and libgimp2.0-dev)
     # https://packages.debian.org/sid/amd64/libgimp2.0/filelist
@@ -72,11 +71,11 @@ class Libgimp20AT21018 < Formula
 
     lib.install Dir["libgimp*/.libs/*.dylib"]
 
-    lib_pkgconfig.install %w[ gimp-2.0.pc gimpthumb-2.0.pc gimpui-2.0.pc]
+    lib_pkgconfig.install %w[gimp-2.0.pc gimpthumb-2.0.pc gimpui-2.0.pc]
 
     (share + "aclocal").install "m4macros/gimp-2.0.m4"
 
-    bin.install Dir["tools/.libs/gimptool-2.0"]
+    bin.install "tools/.libs/gimptool-2.0"
 
     Dir["po-libgimp/*.gmo"].each do |f|
       locale = File.basename(f).gsub(/(.+)\.gmo/, '\1')
@@ -87,14 +86,13 @@ class Libgimp20AT21018 < Formula
   end
 
   def caveats
-    s = <<~EOS
+    <<~EOS
       If anything goes wrong with the bottle try installing from source.
         `brew uninstall #{specified_name}; brew install --build-from-source #{specified_name}`
 
       Please report any issues to:
         https://github.com/ryan-robeson/homebrew-gimp/issues
     EOS
-    s
   end
 
   test do
@@ -107,6 +105,6 @@ class Libgimp20AT21018 < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    #system "false"
+    # system "false"
   end
 end

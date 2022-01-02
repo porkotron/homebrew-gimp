@@ -1,16 +1,15 @@
 class PixelArtScalers < Formula
   desc "Gimp plugin for rescaling images with Pixel Art Scaler algorithms such as hqx, xbr and scalex"
   homepage "https://github.com/bbbbbr/gimp-plugin-pixel-art-scalers"
-  head "https://github.com/bbbbbr/gimp-plugin-pixel-art-scalers.git"
   url "https://github.com/bbbbbr/gimp-plugin-pixel-art-scalers.git", tag: "v1.1"
+  head "https://github.com/bbbbbr/gimp-plugin-pixel-art-scalers.git"
 
   bottle do
     root_url "https://github.com/ryan-robeson/homebrew-gimp/releases/download/v1.3"
-    cellar :any
-    sha256 "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3" => :catalina
-    sha256 "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3" => :mojave
-    sha256 "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3" => :high_sierra
-    sha256 "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3" => :sierra
+    sha256 cellar: :any, catalina:    "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3"
+    sha256 cellar: :any, mojave:      "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3"
+    sha256 cellar: :any, high_sierra: "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3"
+    sha256 cellar: :any, sierra:      "ba1438c943e0945b18f4cb0046bbe0c544b42215fef4e710f4af03d9e709a9f3"
   end
 
   depends_on "ryan-robeson/gimp/libgimp2.0"
@@ -28,7 +27,7 @@ class PixelArtScalers < Formula
     plugin_dir = HOMEBREW_PREFIX/"share"/"gimp-plugins"/"pixel-art-scalers"
     cli_install_msg = nil
 
-    s = <<~EOS
+    <<~EOS
       Make sure '#{plugin_dir}' is in GIMP's list of plug-in directories:
         Preferences -> Folders -> Plug-ins
 
@@ -40,7 +39,6 @@ class PixelArtScalers < Formula
       Please report any issues to:
         https://github.com/ryan-robeson/homebrew-gimp/issues
     EOS
-    s
   end
 
   test do

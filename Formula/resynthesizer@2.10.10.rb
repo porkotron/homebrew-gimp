@@ -1,16 +1,15 @@
 class ResynthesizerAT21010 < Formula
   desc "Suite of gimp plugins for texture synthesis"
   homepage "https://github.com/bootchk/resynthesizer"
-  head "https://github.com/bootchk/resynthesizer.git"
   url "https://github.com/bootchk/resynthesizer.git", tag: "v2.0.3"
+  head "https://github.com/bootchk/resynthesizer.git"
 
   bottle do
     root_url "https://github.com/ryan-robeson/homebrew-gimp/releases/download/v1.2"
-    cellar :any
-    sha256 "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561" => :catalina
-    sha256 "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561" => :mojave
-    sha256 "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561" => :high_sierra
-    sha256 "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561" => :sierra
+    sha256 cellar: :any, catalina:    "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561"
+    sha256 cellar: :any, mojave:      "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561"
+    sha256 cellar: :any, high_sierra: "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561"
+    sha256 cellar: :any, sierra:      "b3f5024e3722e2295613be855716af95526506405bda64b001a83e10bd7e8561"
   end
 
   depends_on "autoconf" => :build
@@ -23,7 +22,7 @@ class ResynthesizerAT21010 < Formula
     system "./autogen.sh"
     system "./configure", "--disable-silent-rules",
                           "--prefix=#{prefix}"
-    #interactive_shell
+    # interactive_shell
     system "make"
 
     plugin_dir = share/"gimp-plugins"/"resynthesizer"
@@ -129,7 +128,7 @@ class ResynthesizerAT21010 < Formula
     #
     # END Future Reference
 
-    s = <<~EOS
+    <<~EOS
       Make sure '#{plugin_dir}' is in GIMP's list of plug-in directories:
         Preferences -> Folders -> Plug-ins
 
@@ -141,7 +140,6 @@ class ResynthesizerAT21010 < Formula
       Please report any issues to:
         https://github.com/ryan-robeson/homebrew-gimp/issues
     EOS
-    s
   end
 
   test do
