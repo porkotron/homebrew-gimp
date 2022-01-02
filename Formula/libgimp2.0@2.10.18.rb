@@ -32,8 +32,8 @@ class Libgimp20AT21018 < Formula
     librsvg
     pango
     poppler
-    ryan-robeson/gimp/pygtk
-    ryan-robeson/gimp/mypaint-brushes
+    porkotron/gimp/pygtk
+    porkotron/gimp/mypaint-brushes
   ].each do |d|
     depends_on d
   end
